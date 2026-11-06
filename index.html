@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DriveMarket — Продажа автомобилей</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Иконки FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- Хедер -->
+  <header class="navbar">
+    <div class="logo">
+      <i class="fa-solid fa-car-side"></i> <span>Drive</span>Market
+    </div>
+    <nav class="nav-links">
+      <a href="#catalog">Каталог</a>
+      <a href="#sell">Продать авто</a>
+    </nav>
+    <div class="header-actions">
+      <button class="fav-btn" id="favHeaderBtn">
+        <i class="fa-solid fa-heart"></i> Избранное (<span id="favCount">0</span>)
+      </button>
+
+      <!-- Блок авторизации в шапке -->
+      <div id="authHeaderBlock">
+        <button class="auth-btn" id="openAuthBtn">
+          <i class="fa-solid fa-user"></i> Войти
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Первый экран -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Найди авто своей мечты</h1>
+      <p>Тысячи проверенных автомобилей с гарантией и быстрой доставкой</p>
+      <a href="#catalog" class="cta-btn">Смотреть каталог</a>
+    </div>
+  </section>
+
+  <!-- Фильтры и Каталог -->
+  <main class="container" id="catalog">
+    <h2>Каталог автомобилей</h2>
+    
+    <!-- Панель фильтрации -->
+    <div class="filters">
+      <div class="filter-group">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="searchInput" placeholder="Поиск по названию или городу...">
+      </div>
+
+      <div class="filter-group">
+        <select id="bodyFilter">
+          <option value="all">Все кузова</option>
+          <option value="Седан">Седан</option>
+          <option value="Внедорожник">Внедорожник</option>
+          <option value="Купе">Купе</option>
+          <option value="Хэтчбек">Хэтчбек</option>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <select id="fuelFilter">
+          <option value="all">Любой двигатель</option>
+          <option value="Бензин">Бензин</option>
+          <option value="Дизель">Дизель</option>
+          <option value="Электро">Электро</option>
+          <option value="Гибрид">Гибрид</option>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <select id="sortSelect">
+          <option value="default">Сортировка по умолчанию</option>
+          <option value="price-asc">Сначала дешевле</option>
+          <option value="price-desc">Сначала дороже</option>
+          <option value="year-desc">Сначала новее</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Сетка карточек -->
+    <div class="car-grid" id="carGrid"></div>
+  </main>
+
+  <!-- Форма добавления объявления -->
+  <section class="sell-section" id="sell">
+    <div class="container">
+      <h2>Разместить объявление</h2>
+      <form id="addCarForm" class="sell-form">
+        <input type="text" id="carTitle" placeholder="Марка и модель (напр. BMW M5)" required>
+        <input type="number" id="carPrice" placeholder="Цена (в ₽)" required>
+        <input type="number" id="carYear" placeholder="Год выпуска" required>
+        <input type="number" id="carMileage" placeholder="Пробег (км)" required>
+        
+        <select id="carBody" required>
+          <option value="">Выберите кузов</option>
+          <option value="Седан">Седан</option>
+          <option value="Внедорожник">Внедорожник</option>
+          <option value="Купе">Купе</option>
+          <option value="Хэтчбек">Хэтчбек</option>
+        </select>
+
+        <select id="carFuel" required>
+          <option value="">Тип двигателя</option>
+          <option value="Бензин">Бензин</option>
+          <option value="Дизель">Дизель</option>
+          <option value="Электро">Электро</option>
+          <option value="Гибрид">Гибрид</option>
+        </select>
+
+        <input type="text" id="carCity" placeholder="Город" required>
+        <input type="url" id="carImage" placeholder="Ссылка на фото (URL)" required>
+        
+        <button type="submit" class="cta-btn">Опубликовать</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Модальное окно деталей авто -->
+  <div class="modal" id="carModal">
+    <div class="modal-content">
+      <span class="close-btn" id="closeModal">&times;</span>
+      <div id="modalBody"></div>
+    </div>
+  </div>
+
+  <!-- Модальное окно Входа / Регистрации -->
+  <div class="modal" id="authModal">
+    <div class="modal-content auth-modal-content">
+      <span class="close-btn" id="closeAuthModal">&times;</span>
+      
+      <!-- Вкладки (Вход / Регистрация) -->
+      <div class="auth-tabs">
+        <button class="tab-btn active" id="tabLogin">Вход</button>
+        <button class="tab-btn" id="tabRegister">Регистрация</button>
+      </div>
+
+      <!-- Форма Входа -->
+      <form id="loginForm" class="auth-form active">
+        <h3>Вход в аккаунт</h3>
+        <input type="email" id="loginEmail" placeholder="Email" required>
+        <input type="password" id="loginPassword" placeholder="Пароль" required>
+        <button type="submit" class="cta-btn">Войти</button>
+      </form>
+
+      <!-- Форма Регистрации -->
+      <form id="registerForm" class="auth-form">
+        <h3>Создание аккаунта</h3>
+        <input type="text" id="regName" placeholder="Ваше имя" required>
+        <input type="email" id="regEmail" placeholder="Email" required>
+        <input type="password" id="regPassword" placeholder="Пароль" required>
+        <button type="submit" class="cta-btn">Зарегистрироваться</button>
+      </form>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2026 DriveMarket. Все права защищены.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,400 @@
+:root {
+  --bg-color: #0f172a;
+  --card-bg: #1e293b;
+  --accent-color: #3b82f6;
+  --accent-hover: #2563eb;
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --border-color: #334155;
+  --danger: #ef4444;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+/* Навигация */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  background-color: rgba(30, 41, 59, 0.95);
+  backdrop-filter: blur(10px);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--accent-color);
+}
+
+.logo span {
+  color: var(--text-main);
+}
+
+.nav-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  margin: 0 15px;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover {
+  color: var(--text-main);
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.fav-btn, .auth-btn, .logout-btn {
+  background: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.auth-btn {
+  background: var(--accent-color);
+  border-color: var(--accent-color);
+  color: white;
+}
+
+.auth-btn:hover {
+  background: var(--accent-hover);
+}
+
+.user-badge {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 4px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+}
+
+.logout-btn:hover {
+  background: var(--danger);
+  border-color: var(--danger);
+  color: white;
+}
+
+/* Первый экран */
+.hero {
+  background: linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.9)),
+              url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1600&q=80') center/cover;
+  height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 20px;
+}
+
+.hero h1 {
+  font-size: 44px;
+  margin-bottom: 15px;
+}
+
+.hero p {
+  font-size: 18px;
+  color: var(--text-muted);
+  margin-bottom: 25px;
+}
+
+.cta-btn {
+  display: inline-block;
+  background-color: var(--accent-color);
+  color: white;
+  padding: 12px 28px;
+  text-decoration: none;
+  border-radius: 8px;
+  border: none;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.cta-btn:hover {
+  background-color: var(--accent-hover);
+}
+
+/* Фильтры */
+.filters {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  margin: 30px 0;
+  background-color: var(--card-bg);
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+}
+
+.filter-group {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.filter-group i {
+  position: absolute;
+  left: 12px;
+  color: var(--text-muted);
+}
+
+.filters input, .filters select {
+  width: 100%;
+  padding: 10px 10px 10px 35px;
+  background-color: var(--bg-color);
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+  border-radius: 6px;
+  outline: none;
+}
+
+.filters select {
+  padding-left: 10px;
+}
+
+/* Сетка авто */
+.car-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 25px;
+}
+
+.car-card {
+  background-color: var(--card-bg);
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  transition: transform 0.3s, box-shadow 0.3s;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.car-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+
+.car-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.like-icon {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: rgba(0, 0, 0, 0.6);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: white;
+  transition: color 0.3s;
+}
+
+.like-icon.active {
+  color: var(--danger);
+}
+
+.car-details {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.car-title {
+  font-size: 20px;
+  margin-bottom: 8px;
+}
+
+.car-price {
+  font-size: 22px;
+  font-weight: bold;
+  color: var(--accent-color);
+  margin-bottom: 15px;
+}
+
+.car-specs {
+  display: flex;
+  justify-content: space-between;
+  color: var(--text-muted);
+  font-size: 14px;
+  margin-bottom: 20px;
+  border-top: 1px solid var(--border-color);
+  padding-top: 10px;
+}
+
+.card-btn {
+  margin-top: auto;
+  width: 100%;
+  padding: 10px;
+  background-color: transparent;
+  border: 1px solid var(--accent-color);
+  color: var(--accent-color);
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s;
+}
+
+.card-btn:hover {
+  background-color: var(--accent-color);
+  color: white;
+}
+
+/* Форма добавления авто */
+.sell-section {
+  background-color: var(--card-bg);
+  border-top: 1px solid var(--border-color);
+}
+
+.sell-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.sell-form input, .sell-form select {
+  padding: 12px;
+  background-color: var(--bg-color);
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+  border-radius: 6px;
+}
+
+.sell-form button {
+  grid-column: 1 / -1;
+}
+
+/* Модальные окна */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: var(--card-bg);
+  padding: 30px;
+  border-radius: 12px;
+  max-width: 500px;
+  width: 90%;
+  position: relative;
+  max-height: 90vh;
+  overflow-y: auto;
+  border: 1px solid var(--border-color);
+}
+
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 28px;
+  cursor: pointer;
+  color: var(--text-muted);
+}
+
+/* Вкладки и формы авторизации */
+.auth-tabs {
+  display: flex;
+  margin-bottom: 25px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.tab-btn {
+  flex: 1;
+  padding: 12px;
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s;
+  border-bottom: 2px solid transparent;
+}
+
+.tab-btn.active {
+  color: var(--accent-color);
+  border-bottom-color: var(--accent-color);
+}
+
+.auth-form {
+  display: none;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.auth-form.active {
+  display: flex;
+}
+
+.auth-form h3 {
+  margin-bottom: 10px;
+}
+
+.auth-form input {
+  padding: 12px;
+  background-color: var(--bg-color);
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+  border-radius: 6px;
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  background-color: var(--bg-color);
+  border-top: 1px solid var(--border-color);
+  color: var(--text-muted);
+}
